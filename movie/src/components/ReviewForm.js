@@ -15,7 +15,8 @@ function ReviewForm({
   initialValues = INITIAL_VALUES, 
   initialPreview,
   onSubmitSuccess, 
-  onCancel 
+  onCancel,
+  onSubmit, 
 }) {
   const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,7 +48,7 @@ function ReviewForm({
     try {
       setSubmittingError(null);
       setIsSubmitting(true);
-      result = await createReview(formData);
+      result = await onSubmit(formData);
     } catch (error) {
       setSubmittingError(error);
       return;
